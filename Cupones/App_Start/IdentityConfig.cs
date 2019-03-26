@@ -107,18 +107,13 @@ namespace Cupones
         }
     }
 
-    public class ApplicationRoleManager : RoleManager<IdentityRole>
+    public class ApplicationRoleManager : RoleManager<ApplicationRole>
     {
-        public ApplicationRoleManager(IRoleStore<IdentityRole, string> roleStore)
-            : base(roleStore) { }
-
-        public static ApplicationRoleManager Create(
-            IdentityFactoryOptions<ApplicationRoleManager> options,
-            IOwinContext context)
+        public ApplicationRoleManager(IRoleStore<ApplicationRole, string> rolestore) : base(rolestore) { }
+        public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
         {
-            var manager = new ApplicationRoleManager(
-                new RoleStore<IdentityRole>(context.Get<ApplicationDbContext>()));
-            return manager;
+            var applicationRoleManager = new ApplicationRoleManager(new RoleStore<ApplicationRole>(context.Get<ApplicationDbContext>()));
+            return applicationRoleManager;
         }
     }
 }

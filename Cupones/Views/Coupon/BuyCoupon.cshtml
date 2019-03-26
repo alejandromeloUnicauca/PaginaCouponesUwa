@@ -1,0 +1,43 @@
+﻿@model Cupones.Models.CouponModel
+
+@{
+    ViewBag.Title = "BuyCoupon";
+}
+
+<h2>BuyCoupon</h2>
+
+<div>
+    <h4>CouponModel</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <img class="card-img-top" src=@Html.DisplayFor(model => model.pathImg) alt="Card image cap" style="width:260px;height:200px">
+                <div class="card-body">
+                    <h4 class="card-title">@Html.DisplayFor(model => model.name)</h4>
+                    <p class="card-text">
+                        
+                        @{
+                            long originalCost = Model.originalCost;
+                            long saleCost = Model.saleCost;
+                            double descuento = (originalCost - saleCost);
+                            descuento = (descuento / originalCost)*100;
+                            
+                            <h4>Descuento de:@Math.Round(descuento,1) %</h4>
+                            <h4>Stock:@Model.stock</h4>
+                            <h4>Valido hasta:@Html.DisplayFor(model => model.expirationDate)</h4>
+}
+                        
+                        @Html.DisplayFor(model => model.description)
+                    </p>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col">@Html.ActionLink("Confrim Buy", "ConfirmBuy", Model, new { @class = "btn btn-primary" })</div>
+        
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index", "Home", null, null);
+</p>

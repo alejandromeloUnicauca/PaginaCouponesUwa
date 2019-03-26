@@ -28,6 +28,12 @@
             @Model.Logins.Count [
             @Html.ActionLink("Administrar", "ManageLogins") ]
         </dd>
+        <dt>Hacerme publicista:</dt>
+        <dd>
+            @if(!User.IsInRole("Publicista")){
+                @Html.ActionLink("Ir allá","BecomePublicist")
+            }
+        </dd>
         @*
             Los números de teléfono se pueden usar como un segundo factor de comprobación en un sistema de autenticación en dos fases.
              

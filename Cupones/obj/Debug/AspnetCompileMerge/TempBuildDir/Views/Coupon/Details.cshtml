@@ -1,0 +1,90 @@
+﻿@model Cupones.Models.CouponModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CouponModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.baseCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.baseCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.saleCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.saleCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.originalCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.originalCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.enable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.enable)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.expirationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expirationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pathImg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pathImg)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idCoupon }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

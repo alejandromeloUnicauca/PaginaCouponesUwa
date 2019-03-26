@@ -8,7 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Cupones.Models;
-
+using Microsoft.AspNet.Identity.EntityFramework;
 namespace Cupones.Controllers
 {
     [Authorize(Roles="Admin")]
@@ -85,6 +85,7 @@ namespace Cupones.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(applicationUser).State = EntityState.Modified;
+                
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }

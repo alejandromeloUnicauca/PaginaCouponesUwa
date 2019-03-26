@@ -1,0 +1,88 @@
+﻿@model Cupones.Models.CouponModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>CouponModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.baseCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.baseCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.saleCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.saleCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.originalCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.originalCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.enable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.enable)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.expirationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expirationDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

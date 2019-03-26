@@ -18,6 +18,12 @@ namespace Cupones.Models
         }
     }
 
+    public class ApplicationRole : IdentityRole
+    {
+        public ApplicationRole() : base() { }
+        public ApplicationRole(string roleName) : base(roleName) { }
+    }
+
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
@@ -31,6 +37,12 @@ namespace Cupones.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Cupones.Models.RoleViewModel> RoleViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<Cupones.Models.CouponCodeModel> CuoponCodeModels { get; set; }
+
+        //public System.Data.Entity.DbSet<Cupones.Models.RoleViewModel> RoleViewModels { get; set; }
 
         //public System.Data.Entity.DbSet<Cupones.Models.ApplicationUser> ApplicationUsers { get; set; }
     }

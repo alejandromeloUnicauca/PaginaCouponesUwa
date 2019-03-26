@@ -320,6 +320,18 @@ namespace Cupones.Controllers
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
 
+
+        public async Task<ActionResult> BecomePublicist()
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await UserManager.FindByNameAsync(User.Identity.Name);
+                UserManager.AddToRole(user.Id, "Publicista");
+                return RedirectToAction("Index","Coupon");
+            }
+            return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && _userManager != null)

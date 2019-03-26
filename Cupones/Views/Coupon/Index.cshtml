@@ -35,6 +35,9 @@
         <th>
             @Html.DisplayNameFor(model => model.expirationDate)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pathImg)
+        </th>
         <th></th>
     </tr>
 
@@ -63,6 +66,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.expirationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pathImg)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.idCoupon }) |
