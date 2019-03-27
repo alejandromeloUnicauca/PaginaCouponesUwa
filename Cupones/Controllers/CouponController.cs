@@ -133,6 +133,7 @@ namespace Cupones.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Empresas = new SelectList(db.EmpresaModel.ToList(), "idEmpresa", "nombre");
             return View(couponModel);
         }
 

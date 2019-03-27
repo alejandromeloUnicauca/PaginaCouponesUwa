@@ -39,6 +39,7 @@ namespace Cupones.Controllers
             }
         }
 
+        [Authorize(Roles="Empresa")]
         // GET: CouponCode
         public async Task<ActionResult> Index()
         {
@@ -61,15 +62,41 @@ namespace Cupones.Controllers
             {
                 return HttpNotFound();
             }
-            CouponCodeViewModel couponViewModel = new CouponCodeViewModel() { couponModel = couponModel };
+            var msg = TempData["msg"] as string;
+            ViewBag.msg = msg;
+            CouponCodeModel couponCode = new CouponCodeModel();
+            CouponCodeViewModel couponViewModel = new CouponCodeViewModel() { couponModel = couponModel, couponCode = couponCode };
             return View(couponViewModel);
         }
 
-        public async Task<ActionResult> Redimir(string codigo)
+        [HttpPost]
+        public async Task<ActionResult> Redimir(CouponCodeViewModel cuponcodemodel)
         {
-            if (codigo != null)
+            if (cuponcodemodel != null)
             {
-
+                List<CouponCodeModel> cupones = await db.CuoponCodeModels.Where(x => x.code == cuponcodemodel.couponCode.code).ToListAsync();
+                if (cupones.Count > 0)
+                {
+                    CouponCodeModel cuponCode = cupones.ElementAt(0);
+                    if (cuponCode.status)
+                    {
+                        TempData["msg"] = "El cupon ya esta redimido";
+                        return RedirectToAction("Details", new { id = cuponcodemodel.couponModel.idCoupon });
+                    }
+                    else
+                    {
+                        cuponCode.status = true;
+                        db.Entry(cuponCode).State = EntityState.Modified;
+                        await db.SaveChangesAsync();
+                        TempData["msg"] = "Cupon redimido con exito";
+                        return RedirectToAction("Details", new { id = cuponcodemodel.couponModel.idCoupon });
+                    }
+                }
+                else
+                {
+                    TempData["msg"] = "No se encontro el codigo";
+                    return RedirectToAction("Details", new { id = cuponcodemodel.couponModel.idCoupon});
+                }
             }
             return View();
         }

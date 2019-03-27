@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Cupones.Models;
+using System.Collections.Generic;
 
 namespace Cupones.Controllers
 {
@@ -15,6 +16,7 @@ namespace Cupones.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public ManageController()
         {
@@ -320,6 +322,13 @@ namespace Cupones.Controllers
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
 
+        public async Task<ActionResult> MisCupones()
+        {
+            var user = await UserManager.FindByNameAsync(User.Identity.Name);
+            List<CouponCodeModel> cupones = db.CuoponCodeModels.Where(x => x.UserId== user.Id).ToList();
+            return View(cupones);
+        }
+
 
         public async Task<ActionResult> BecomePublicist()
         {
@@ -331,6 +340,8 @@ namespace Cupones.Controllers
             }
             return View();
         }
+
+
 
         protected override void Dispose(bool disposing)
         {
