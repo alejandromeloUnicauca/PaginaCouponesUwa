@@ -9,12 +9,38 @@ using System.Web;
 using System.Web.Mvc;
 using Cupones.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity;
+
 namespace Cupones.Controllers
 {
     [Authorize(Roles="Admin")]
     public class AdminController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationUserManager _userManager;
+
+        public AdminController()
+        {
+
+        }
+
+        public AdminController(ApplicationUserManager userManager)
+        {
+            UserManager = userManager;
+        }
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
 
         // GET: Admin
         public async Task<ActionResult> Index()
@@ -113,9 +139,61 @@ namespace Cupones.Controllers
         public async Task<ActionResult> DeleteConfirmed(string id)
         {
             ApplicationUser applicationUser = await ((DbSet<ApplicationUser>)db.Users).FindAsync(id);
+            string UserId = id;
+            List<EmpresaModel> empresas = await db.EmpresaModel.Where(x => x.UserId == UserId).ToListAsync();
+            if (empresas != null)
+            {
+                if (empresas.Count > 0)
+                {
+                    db.EmpresaModel.Remove(empresas.ElementAt(0));
+                    await db.SaveChangesAsync();
+                }
+            }
             db.Users.Remove(applicationUser);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+
+        // GET: Admin/Create
+        public ActionResult CreateEmpresa()
+        {
+            ViewBag.Cupones = new SelectList(db.Coupons.ToList(), "Name", "Name");
+            return View();
+        }
+
+        // POST: Admin/Create
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CreateEmpresa(EmpresaViewModel empresaModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = empresaModel.Register.UserName, Email = empresaModel.Register.Email };
+                var result = await UserManager.CreateAsync(user, empresaModel.Register.Password);
+                if (result.Succeeded)
+                {
+                    user = await UserManager.FindByNameAsync(empresaModel.Register.UserName);
+                    UserManager.AddToRole(user.Id, "Empresa");
+                    empresaModel.Empresa.UserId = user.Id;
+                    db.EmpresaModel.Add(empresaModel.Empresa);
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
+                AddErrors(result);
+            }
+
+            return View(empresaModel);
+        }
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
         }
 
         protected override void Dispose(bool disposing)

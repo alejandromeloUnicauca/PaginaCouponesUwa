@@ -75,3 +75,5 @@ C:\Users\JhonMZ\documents\visual studio 2013\Projects\SlnCupones\Cupones\obj\Deb
 C:\Users\JhonMZ\documents\visual studio 2013\Projects\SlnCupones\Cupones\obj\Debug\Cupones.pdb
 C:\Users\JhonMZ\documents\visual studio 2013\Projects\SlnCupones\Cupones\obj\Debug\Cupones.csprojResolveAssemblyReference.cache
 C:\Users\JhonMZ\documents\visual studio 2013\Projects\SlnCupones\Cupones\obj\Debug\Cupones.Migrations.role.resources
+C:\Users\JhonMZ\documents\visual studio 2013\Projects\SlnCupones\Cupones\obj\Debug\Cupones.Migrations.Empresa.resources
+C:\Users\JhonMZ\documents\visual studio 2013\Projects\SlnCupones\Cupones\obj\Debug\Cupones.Migrations.Empresa1.resources

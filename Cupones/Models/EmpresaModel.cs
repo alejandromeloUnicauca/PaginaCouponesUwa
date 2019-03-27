@@ -5,20 +5,24 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+
 namespace Cupones.Models
 {
-    [Table("CouponCode")]
-    public class CouponCodeModel
+    [Table("Empresa")]
+    public class EmpresaModel
     {
-        [Key]
-        public int idCouponCode { get; set; }
-        [Column("code")]
-        public string code { get; set; }
-        public bool status { get; set; }
+        public EmpresaModel()
+        {
 
-        public int idCoupon { get; set; }
-        [ForeignKey("idCoupon")]
-        public virtual CouponModel coupon { get; set; }
+        }
+
+        [Key]
+        public int idEmpresa { get; set; }
+        [Required]
+        public string nit { get; set; }
+        [Required]
+        public string nombre { get; set; }
+        public string telefono { get; set; }
         public string UserId { get; set; }
 
         [ForeignKey("UserId")]

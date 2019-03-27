@@ -48,8 +48,15 @@ namespace Cupones.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                var user = await UserManager.FindByNameAsync(User.Identity.Name);
-                return View(await db.Coupons.Where(x => x.UserId == user.Id).ToListAsync());
+                if (User.IsInRole("Admin"))
+                {
+                    return View(await db.Coupons.ToListAsync());
+                }
+                else
+                {
+                    var user = await UserManager.FindByNameAsync(User.Identity.Name);
+                    return View(await db.Coupons.Where(x => x.UserId == user.Id).ToListAsync());
+                }
             }
             else return View();
         }
@@ -76,6 +83,7 @@ namespace Cupones.Controllers
         [Authorize(Roles = "Publicista")]
         public ActionResult Create()
         {
+            ViewBag.Empresas = new SelectList(db.EmpresaModel.ToList(), "idEmpresa", "nombre");
             return View();
         }
 

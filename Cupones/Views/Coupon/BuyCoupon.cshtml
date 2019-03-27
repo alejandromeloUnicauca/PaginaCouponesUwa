@@ -21,8 +21,9 @@
                             long originalCost = Model.originalCost;
                             long saleCost = Model.saleCost;
                             double descuento = (originalCost - saleCost);
-                            descuento = (descuento / originalCost)*100;
-                            
+                            descuento = (descuento / originalCost) * 100;
+                            <h4>Precio Original:@Html.DisplayFor(model => model.originalCost)</h4>
+                            <h4>Precio Con Descuento:@Html.DisplayFor(model => model.saleCost)</h4>
                             <h4>Descuento de:@Math.Round(descuento,1) %</h4>
                             <h4>Stock:@Model.stock</h4>
                             <h4>Valido hasta:@Html.DisplayFor(model => model.expirationDate)</h4>

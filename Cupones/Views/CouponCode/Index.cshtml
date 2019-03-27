@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Cupones.Models.CouponModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="row" style="padding-top:50px">
+    @foreach (var item in Model)
+    {
+
+        <div class="col-md-4 col-sm-6">
+            <div class="card" style="padding-top:3%">
+                <img class="card-img-top" src=@item.pathImg alt="Card image cap" style="width:260px;height:200px">
+                <div class="card-body">
+                    <h4 class="card-title">@item.name</h4>
+                    <p class="card-text">
+                        @{
+                            long originalCost = item.originalCost;
+                            long saleCost = item.saleCost;
+                            double descuento = (originalCost - saleCost);
+                            descuento = (descuento / originalCost) * 100;
+
+                            <h4>Descuento de:@Math.Round(descuento, 1) %</h4>
+                        }
+                        @item.description
+                    </p>
+                    @Html.ActionLink("Redimir", "Details", "CouponCode", new { id = item.idCoupon }, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
+    }
+    </div>

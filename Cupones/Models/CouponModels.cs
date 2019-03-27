@@ -52,6 +52,11 @@ namespace Cupones.Models
 
         [ForeignKey("UserId")]
         public virtual ApplicationUser AspNetUser{ get; set; }
+
+        public int idEmpresa { get; set; }
+
+        [ForeignKey("idEmpresa")]
+        public virtual EmpresaModel Empresa { get; set; }
     }
 
 }

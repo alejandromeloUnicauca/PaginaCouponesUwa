@@ -164,8 +164,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CouponCodeController.cs" />
     <Compile Include="Controllers\CouponController.cs" />
-    <Compile Include="Controllers\CuoponCodeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
@@ -180,10 +180,21 @@
     <Compile Include="Migrations\201903222210079_role.Designer.cs">
       <DependentUpon>201903222210079_role.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903270329554_Empresa.cs" />
+    <Compile Include="Migrations\201903270329554_Empresa.Designer.cs">
+      <DependentUpon>201903270329554_Empresa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903270349485_Empresa1.cs" />
+    <Compile Include="Migrations\201903270349485_Empresa1.Designer.cs">
+      <DependentUpon>201903270349485_Empresa1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\CouponModels.cs" />
     <Compile Include="Models\CouponCodeModel.cs" />
+    <Compile Include="Models\CouponCodeViewModel.cs" />
+    <Compile Include="Models\CouponModels.cs" />
+    <Compile Include="Models\EmpresaModel.cs" />
+    <Compile Include="Models\EmpresaViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
@@ -270,11 +281,13 @@
     <Content Include="Views\Role\AssignRoleUser.cshtml" />
     <Content Include="Views\Coupon\BuyCoupon.cshtml" />
     <Content Include="Views\Coupon\BuyDetail.cshtml" />
+    <Content Include="Views\Admin\CreateEmpresa.cshtml" />
+    <Content Include="Views\CouponCode\Details.cshtml" />
+    <Content Include="Views\CouponCode\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="fileUpload\" />
-    <Folder Include="Views\CuoponCodeModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -289,6 +302,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903222210079_role.resx">
       <DependentUpon>201903222210079_role.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903270329554_Empresa.resx">
+      <DependentUpon>201903270329554_Empresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903270349485_Empresa1.resx">
+      <DependentUpon>201903270349485_Empresa1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

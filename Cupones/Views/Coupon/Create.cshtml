@@ -82,6 +82,13 @@
         </div>
 
         <div class="form-group">
+            @Html.Label("Select Empresa", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.idEmpresa, new SelectList(ViewBag.Empresas, "value", "text"), new { @class = "from-control" })
+            </div>
+        </div>
+            
+        <div class="form-group">
             @Html.LabelFor(model => model.pathImg, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <input type="file" name="fileImg" accept="jpg,jpeg,png,gif"/>

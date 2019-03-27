@@ -68,6 +68,7 @@ namespace Cupones.Controllers
             return View();
         }
 
+        //TODO:Arreglar codigo
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AssignRoleUser(RegisterViewModel model, RoleViewModel model2)

@@ -35,6 +35,10 @@
                             <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
                             <li>@Html.ActionLink("Role", "Index", "Role")</li>
                         }
+                        if (User.IsInRole("Empresa"))
+                        {
+                            <li>@Html.ActionLink("CouponCode", "Index", "CouponCode")</li>
+                        }
                     }
                     
                 </ul>
@@ -46,7 +50,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year - U´wa</p>
         </footer>
     </div>
 

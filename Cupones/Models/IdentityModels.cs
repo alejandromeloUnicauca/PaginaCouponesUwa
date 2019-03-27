@@ -41,6 +41,7 @@ namespace Cupones.Models
         public System.Data.Entity.DbSet<Cupones.Models.RoleViewModel> RoleViewModels { get; set; }
 
         public System.Data.Entity.DbSet<Cupones.Models.CouponCodeModel> CuoponCodeModels { get; set; }
+        public System.Data.Entity.DbSet<Cupones.Models.EmpresaModel> EmpresaModel { get; set; }
 
         //public System.Data.Entity.DbSet<Cupones.Models.RoleViewModel> RoleViewModels { get; set; }
 

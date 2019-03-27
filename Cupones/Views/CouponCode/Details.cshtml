@@ -1,0 +1,45 @@
+﻿@model Cupones.Models.CouponCodeViewModel
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>BuyCoupon</h2>
+
+<div>
+    <h4>CouponModel</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <img class="card-img-top" src=@Html.DisplayFor(model => model.couponModel.pathImg) alt="Card image cap" style="width:260px;height:200px">
+                <div class="card-body">
+                    <h4 class="card-title">@Html.DisplayFor(model => model.couponModel.name)</h4>
+                    <p class="card-text">
+
+                        @{
+                            long originalCost = Model.couponModel.originalCost;
+                            long saleCost = Model.couponModel.saleCost;
+                            double descuento = (originalCost - saleCost);
+                            descuento = (descuento / originalCost) * 100;
+                            <h4>Precio Original:@Html.DisplayFor(model => model.couponModel.originalCost)</h4>
+                            <h4>Precio Con Descuento:@Html.DisplayFor(model => model.couponModel.saleCost)</h4>
+                            <h4>Descuento de:@Math.Round(descuento, 1) %</h4>
+                            <h4>Stock:@Model.couponModel.stock</h4>
+                            <h4>Valido hasta:@Html.DisplayFor(model => model.couponModel.expirationDate)</h4>
+                        }
+
+                        @Html.DisplayFor(model => model.couponModel.description)
+                    </p>
+
+                </div>
+            </div>
+        </div>
+        <div class="col"><h4>Codigo:</h4>@Html.EditorFor(model => model.couponCode.code, new { htmlAttributes = new { @class = "form-control" } })</div><br />
+        <div class="col">@Html.ActionLink("Redimir", "Redimir", new { codigo = Model.couponCode.code }, new { @class = "btn btn-primary" })</div>
+
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index", "Home", null, null);
+</p>
